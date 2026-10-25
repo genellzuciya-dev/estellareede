@@ -164,35 +164,36 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <stop offset="0" stop-color="#FFE6C8" stop-opacity="0"/><stop offset=".3" stop-color="#FFE6C8" stop-opacity=".9"/>
           <stop offset=".7" stop-color="#FFD2A6" stop-opacity=".8"/><stop offset="1" stop-color="#FFD2A6" stop-opacity="0"/>
         </linearGradient>
-        <filter id="soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
-        <filter id="softer" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+        <filter id="soft" filterUnits="userSpaceOnUse" x="-400" y="-300" width="2240" height="1000"><feGaussianBlur stdDeviation="14"/></filter>
+        <filter id="mid" filterUnits="userSpaceOnUse" x="-400" y="-300" width="2240" height="1000"><feGaussianBlur stdDeviation="9"/></filter>
+        <filter id="softer" filterUnits="userSpaceOnUse" x="-400" y="-300" width="2240" height="1000"><feGaussianBlur stdDeviation="6"/></filter>
       </defs>
       <!-- deep rust layer that melts into the night -->
-      <path fill="url(#rust)" opacity=".9" filter="url(#soft)">
+      <path fill="url(#rust)" opacity=".92" filter="url(#mid)">
         <animate attributeName="d" dur="17s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"
-          values="M-120,-80 H1560 V250 C1220,300 1020,215 780,265 C540,315 300,240 -120,285 Z;
-                  M-120,-80 H1560 V280 C1200,235 1000,300 760,250 C520,200 280,300 -120,250 Z;
-                  M-120,-80 H1560 V250 C1220,300 1020,215 780,265 C540,315 300,240 -120,285 Z"/>
+          values="M-120,-80 H1560 V270 C1380,330 1180,210 1000,255 C820,300 640,330 440,265 C240,200 60,230 -120,290 Z;
+                  M-120,-80 H1560 V250 C1380,200 1180,320 1000,280 C820,240 640,215 440,270 C240,325 60,300 -120,245 Z;
+                  M-120,-80 H1560 V270 C1380,330 1180,210 1000,255 C820,300 640,330 440,265 C240,200 60,230 -120,290 Z"/>
       </path>
       <!-- sand and orange sky with a rolling dune edge -->
       <path fill="url(#sand)" filter="url(#softer)">
         <animate attributeName="d" dur="13s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"
-          values="M-120,-80 H1560 V170 C1240,225 1040,130 800,180 C560,230 320,150 -120,200 Z;
-                  M-120,-80 H1560 V200 C1220,150 1020,225 780,175 C540,125 300,215 -120,170 Z;
-                  M-120,-80 H1560 V170 C1240,225 1040,130 800,180 C560,230 320,150 -120,200 Z"/>
+          values="M-120,-80 H1560 V175 C1380,250 1180,110 1000,170 C820,230 640,250 440,180 C240,110 60,140 -120,205 Z;
+                  M-120,-80 H1560 V200 C1380,120 1180,240 1000,195 C820,150 640,120 440,190 C240,260 60,230 -120,165 Z;
+                  M-120,-80 H1560 V175 C1380,250 1180,110 1000,170 C820,230 640,250 440,180 C240,110 60,140 -120,205 Z"/>
       </path>
       <!-- billowing silk of blown sand -->
-      <path fill="none" stroke="url(#silk)" stroke-width="34" stroke-linecap="round" opacity=".45" filter="url(#soft)">
+      <path fill="none" stroke="url(#silk)" stroke-width="40" stroke-linecap="round" opacity=".6" filter="url(#soft)">
         <animate attributeName="d" dur="11s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"
-          values="M-60,120 C260,60 480,190 760,125 C1040,60 1240,150 1500,95;
-                  M-60,95 C240,150 500,70 780,140 C1060,205 1260,90 1500,130;
-                  M-60,120 C260,60 480,190 760,125 C1040,60 1240,150 1500,95"/>
+          values="M-60,125 C200,45 420,205 720,125 C1020,45 1240,175 1500,95;
+                  M-60,90 C220,170 460,60 740,150 C1020,240 1260,80 1500,140;
+                  M-60,125 C200,45 420,205 720,125 C1020,45 1240,175 1500,95"/>
       </path>
-      <path fill="none" stroke="#EE8A4F" stroke-width="16" stroke-linecap="round" opacity=".35" filter="url(#softer)">
+      <path fill="none" stroke="#F0A35E" stroke-width="18" stroke-linecap="round" opacity=".45" filter="url(#softer)">
         <animate attributeName="d" dur="15s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"
-          values="M-60,225 C300,175 560,290 880,225 C1140,175 1300,250 1500,215;
-                  M-60,240 C280,280 580,195 900,250 C1160,295 1320,205 1500,240;
-                  M-60,225 C300,175 560,290 880,225 C1140,175 1300,250 1500,215"/>
+          values="M-60,230 C280,160 560,300 880,225 C1150,160 1300,270 1500,215;
+                  M-60,250 C300,300 600,180 900,255 C1170,320 1320,200 1500,245;
+                  M-60,230 C280,160 560,300 880,225 C1150,160 1300,270 1500,215"/>
       </path>
     </svg>
     <svg class="topo" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
