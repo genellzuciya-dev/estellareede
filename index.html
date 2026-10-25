@@ -50,7 +50,16 @@ nav a:hover{color:var(--ink)}
 
 /* hero */
 .hero{position:relative;overflow:hidden;padding-block:64px 72px;
-  background:linear-gradient(180deg,#EADBC5 0px,#EBB083 35px,#D7712F 85px,#C2541C 120px,#6A2C14 190px,#2A201C 250px,#1C1A19 100%)}
+  background:#1C1A19}
+/* the sunset itself: slowly rises, sinks, and glows */
+.sky{position:absolute;left:0;right:0;top:-40px;height:600px;pointer-events:none;
+  background:linear-gradient(180deg,#EADBC5 0px,#EADBC5 40px,#EBB083 75px,#D7712F 125px,#C2541C 160px,#6A2C14 230px,#2A201C 290px,#1C1A19 420px);
+  animation:sunset 9s ease-in-out infinite alternate}
+@keyframes sunset{from{transform:translateY(0)}to{transform:translateY(30px)}}
+.glow{position:absolute;left:0;right:0;top:0;height:320px;pointer-events:none;
+  background:radial-gradient(55% 110px at 65% 140px,rgba(255,120,40,.55),transparent 75%);
+  animation:glow 7s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.15}to{opacity:1}}
 .hero .eyebrow{color:#2A2422}
 /* desert wind: warm dust drifting across the sky */
 .wind{position:absolute;top:0;left:-60%;width:220%;height:260px;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent);
@@ -63,11 +72,9 @@ nav a:hover{color:var(--ink)}
   animation:wind 16s ease-in-out infinite alternate}
 .wind.two{top:30px;opacity:.7;animation-duration:24s;animation-direction:alternate-reverse}
 @keyframes wind{from{transform:translateX(0)}to{transform:translateX(27%)}}
-.topo{animation:drift 18s ease-in-out infinite alternate}
-@keyframes drift{from{transform:translateX(-60px)}to{transform:translateX(60px)}}
-@media (prefers-reduced-motion:reduce){.wind,.topo{animation:none}}
+@media (prefers-reduced-motion:reduce){.wind,.sky,.glow{animation:none}}
 .topo{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
-.topo path{fill:none;stroke:var(--turquoise);stroke-opacity:.18;stroke-width:1.4}
+.topo path{fill:none;stroke:var(--turquoise);stroke-opacity:.22;stroke-width:2.6}
 .hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center}
 .hero h1{font-size:clamp(38px,6vw,64px);margin-top:14px}
 .hero h1 em{font-style:normal;color:var(--chile)}
@@ -162,6 +169,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <main id="top">
   <section class="hero">
+    <div class="sky" aria-hidden="true"></div>
+    <div class="glow" aria-hidden="true"></div>
     <div class="wind" aria-hidden="true"></div>
     <div class="wind two" aria-hidden="true"></div>
     <svg class="topo" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
