@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="theme-color" content="#1C1A19">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Estella Reede · Cozy Mysteries</title>
 <meta name="description" content="Estella Reede writes the Quinny Sinclair Mysteries, cozy mysteries set in small-town New Mexico. Start with the free prequel, A Matter of A Piñón.">
@@ -15,17 +16,12 @@
 <style>
 /* Layout: a single scroll like a field notebook. Topo lines behind the hero, then book, free prequel, next book, merch, about. */
 :root{
-  --cream:#FBF8F1; --paper:#F3ECE0; --ink:#322E2D; --ink-soft:#6A625C;
-  --chile:#C2541C; --turquoise:#17837F; --line:#E5DCCD; --gold:#F0A35E;
+  --cream:#1C1A19; --paper:#252220; --ink:#F4EEE3; --ink-soft:#BDB4AA;
+  --chile:#EE8A4F; --turquoise:#4FC2BE; --line:#3A3532; --gold:#F0A35E;
   --display:"Poppins", "Helvetica Neue", Arial, sans-serif;
   --body:"Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --cream:#1C1A19; --paper:#252220; --ink:#F4EEE3; --ink-soft:#BDB4AA;
-  --chile:#EE8A4F; --turquoise:#4FC2BE; --line:#3A3532; color-scheme:dark }}
-:root[data-theme="dark"]{
-  --cream:#1C1A19; --paper:#252220; --ink:#F4EEE3; --ink-soft:#BDB4AA;
-  --chile:#EE8A4F; --turquoise:#4FC2BE; --line:#3A3532; color-scheme:dark }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.65 var(--body)}
@@ -44,8 +40,7 @@ header{padding-block:18px;border-top:6px solid var(--turquoise);box-shadow:inset
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .wordmark{display:block;line-height:0}
 .wordmark img{width:150px;height:auto;display:block}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .wordmark img{filter:invert(.94)}}
-:root[data-theme="dark"] .wordmark img{filter:invert(.94)}
+.wordmark img{filter:invert(.94)}
 nav{display:flex;gap:18px;flex-wrap:wrap}
 nav a{color:var(--ink-soft);text-decoration:none;font-weight:500;font-size:15px}
 nav a:hover{color:var(--ink)}
