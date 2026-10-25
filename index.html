@@ -36,17 +36,32 @@ h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.015em;line-
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover{transform:none}}
 
 /* header */
-header{padding-block:18px;border-top:6px solid var(--turquoise);box-shadow:inset 0 3px 0 var(--chile)}
+/* desert sky: tan at the top, fading to night */
+header{padding-block:18px;border-top:6px solid var(--turquoise);box-shadow:inset 0 3px 0 var(--chile);background:linear-gradient(180deg,#F3ECE0 0%,#EADBC5 100%)}
+header nav a{color:#5A4E46}
+header nav a:hover{color:#322E2D}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .wordmark{display:block;line-height:0}
 .wordmark img{width:150px;height:auto;display:block}
-.wordmark img{filter:invert(.94)}
+
 nav{display:flex;gap:18px;flex-wrap:wrap}
 nav a{color:var(--ink-soft);text-decoration:none;font-weight:500;font-size:15px}
 nav a:hover{color:var(--ink)}
 
 /* hero */
-.hero{position:relative;overflow:hidden;padding-block:48px 72px}
+.hero{position:relative;overflow:hidden;padding-block:64px 72px;
+  background:linear-gradient(180deg,#EADBC5 0px,#C9AC8E 40px,#8E6F56 110px,#4A3C33 230px,#2A2421 420px,#1C1A19 100%)}
+.hero .eyebrow{color:#FBF3E6}
+.wind{position:absolute;inset:-20% -50%;pointer-events:none;
+  background:
+    radial-gradient(60% 18% at 30% 12%,rgba(240,214,180,.28),transparent 70%),
+    radial-gradient(45% 14% at 75% 22%,rgba(238,170,110,.18),transparent 70%),
+    radial-gradient(50% 12% at 50% 38%,rgba(240,214,180,.10),transparent 70%);
+  animation:wind 26s ease-in-out infinite alternate}
+@keyframes wind{from{transform:translateX(-6%)}to{transform:translateX(6%)}}
+.topo{animation:drift 40s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translateX(-24px)}to{transform:translateX(24px)}}
+@media (prefers-reduced-motion:reduce){.wind,.topo{animation:none}}
 .topo{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
 .topo path{fill:none;stroke:var(--turquoise);stroke-opacity:.18;stroke-width:1.4}
 .hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center}
@@ -143,6 +158,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <main id="top">
   <section class="hero">
+    <div class="wind" aria-hidden="true"></div>
     <svg class="topo" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <path d="M-20 420 C180 360 300 470 480 410 S820 300 1000 360 S1180 330 1240 300"/>
       <path d="M-20 470 C200 410 320 520 500 460 S840 350 1010 410 S1190 380 1240 350"/>
