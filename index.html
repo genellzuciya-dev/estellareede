@@ -100,7 +100,10 @@ h2{font-size:clamp(28px,4vw,40px);margin-top:10px}
 .item p{margin:0;font-size:15px;color:var(--ink-soft)}
 .soon{font:700 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--chile)}
 
-img.cover.book1{max-width:230px;justify-self:start;margin-bottom:26px}
+.book{display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:start}
+.book+.book{margin-top:56px;padding-top:56px;border-top:1px solid var(--line)}
+.book .cover{max-width:240px;justify-self:start}
+.book .prose{min-width:0}
 .review{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;border:2px solid var(--turquoise);border-radius:14px;padding:36px 40px}
 .review p{max-width:36em;color:var(--ink-soft)}
 .stars{font-size:34px;letter-spacing:4px;color:var(--chile);line-height:1}
@@ -121,6 +124,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .mock{width:150px;justify-self:center}
   .free{padding:28px}
   .review{grid-template-columns:1fr;padding:26px;gap:16px}
+  .book{grid-template-columns:1fr;gap:24px}
+  .book .cover{max-width:200px}
 }
 @media (max-width:420px){.merch{grid-template-columns:1fr}}
 </style>
@@ -170,8 +175,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </section>
 
   <section id="books" class="band">
-    <div class="wrap two">
-      <div class="prose">
+    <div class="wrap">
+      <article class="book">
+        <img class="cover" src="cover.jpg" width="800" height="1280" alt="Cover of A Matter of A Piñón: The Baker's Missing Ledger by Estella Reede" loading="lazy">
+        <div class="prose">
         <div class="eyebrow">The Prequel Novella</div>
         <h2>A Matter of A Piñón: The Baker's Missing Ledger</h2>
         <p class="hook">One missing bakery ledger, an inheritance compromised, and a mapmaker who can't resist connecting the dots.</p>
@@ -184,9 +191,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <a class="btn primary" href="https://www.amazon.com/dp/B0HN66QSLB" target="_blank" rel="noopener">Buy on Amazon</a>
         </div>
         <p class="choice">Or get it free when you <a href="https://dl.bookfunnel.com/cmf38oatsq" target="_blank" rel="noopener">join the email list</a>.</p>
-      </div>
-      <div class="prose">
-        <img class="cover book1" src="book1-cover.jpg" width="800" height="1280" alt="Cover of Murder with Extra Salsa, A Quinny Sinclair Mapmaker Mystery by Estella Reede, showing a black cat beside a spilled bowl of salsa on a hand-drawn map in a cozy bookstore" loading="lazy">
+        </div>
+      </article>
+      <article class="book">
+        <img class="cover" src="book1-cover.jpg" width="800" height="1280" alt="Cover of Murder with Extra Salsa, A Quinny Sinclair Mapmaker Mystery by Estella Reede, showing a black cat beside a spilled bowl of salsa on a hand-drawn map in a cozy bookstore" loading="lazy">
+        <div class="prose">
         <div class="eyebrow">Coming Next · Book 1</div>
         <h2>Murder with Extra Salsa</h2>
         <p>Back home in Corrales, Quinny is helping run her grandparents' bookstore when a rancher brings in an old hand-drawn map. One hike later, a year-old disappearance becomes something much darker, and the whole valley seems to know more than it's saying.</p>
@@ -196,7 +205,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <li>Mr. Beans returns</li>
         </ul>
         <p style="margin-top:18px">Get the free prequel to hear first when it launches.</p>
-      </div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -297,8 +307,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
    { name: "Cozy Fall Mysteries", blurb: "Free cozy mysteries with small towns and big secrets.", ends: "2026-11-30", link: "https://books.bookfunnel.com/..." },
 */
 const promos = [
-  { name: "Murder, Tea & Mystery", blurb: "Cozy mysteries to curl up with and a cup of tea.", ends: "", link: "https://books.bookfunnel.com/murderteamysteryoctober/3nvh3kj2wc" },
-  { name: "Cozy Whodunit", blurb: "Small towns, clever sleuths, and puzzles to solve.", ends: "", link: "https://books.bookfunnel.com/cozywhodunitoct/rtx1qfvbpu" },
+  { name: "Murder, Tea & Mystery", blurb: "Cozy mysteries to curl up with and a cup of tea.", ends: "2026-10-31", link: "https://books.bookfunnel.com/murderteamysteryoctober/3nvh3kj2wc" },
+  { name: "Cozy Whodunit", blurb: "Small towns, clever sleuths, and puzzles to solve.", ends: "2026-10-31", link: "https://books.bookfunnel.com/cozywhodunitoct/rtx1qfvbpu" },
   { name: "Cozy Mystery Collection", blurb: "A big shelf of cozy mysteries to browse through the holidays.", ends: "2026-12-31", link: "https://books.bookfunnel.com/bfhostcozymyst90dayoct/84f5gz2183" },
 ];
 
