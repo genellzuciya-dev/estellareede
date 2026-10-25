@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estella Reede · Cozy Mysteries</title>
+<meta name="description" content="Estella Reede writes the Quinny Sinclair Mysteries, cozy mysteries set in small-town New Mexico. Start with the free prequel, A Matter of A Piñón.">
+<meta property="og:title" content="Estella Reede · Cozy Mysteries">
+<meta property="og:image" content="https://estellareedeauthor.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="Cozy mysteries set in small-town New Mexico. Start with the free prequel, A Matter of A Piñón.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,700;0,800;1,500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: a single scroll like a field notebook. Topo lines behind the hero, then book, free prequel, next book, merch, about. */
+:root{
+  --cream:#FBF8F1; --paper:#F3ECE0; --ink:#322E2D; --ink-soft:#6A625C;
+  --chile:#C2541C; --turquoise:#17837F; --line:#E5DCCD; --gold:#F0A35E;
+  --display:"Poppins", "Helvetica Neue", Arial, sans-serif;
+  --body:"Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --cream:#1C1A19; --paper:#252220; --ink:#F4EEE3; --ink-soft:#BDB4AA;
+  --chile:#EE8A4F; --turquoise:#4FC2BE; --line:#3A3532; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --cream:#1C1A19; --paper:#252220; --ink:#F4EEE3; --ink-soft:#BDB4AA;
+  --chile:#EE8A4F; --turquoise:#4FC2BE; --line:#3A3532; color-scheme:dark }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.65 var(--body)}
+a{color:var(--turquoise)}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--turquoise);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.015em;line-height:1.08;text-wrap:balance;margin:0}
+.eyebrow{font:700 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--turquoise)}
+.btn{display:inline-block;font:700 15px/1 var(--body);padding:15px 22px;border-radius:999px;text-decoration:none;border:2px solid var(--ink);color:var(--ink)}
+.btn.primary{background:var(--chile);border-color:var(--chile);color:#FFF9F2}
+.btn:hover{transform:translateY(-1px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover{transform:none}}
+
+/* header */
+header{padding-block:18px;border-top:6px solid var(--turquoise);box-shadow:inset 0 3px 0 var(--chile)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.wordmark{display:block;line-height:0}
+.wordmark img{width:150px;height:auto;display:block}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .wordmark img{filter:invert(.94)}}
+:root[data-theme="dark"] .wordmark img{filter:invert(.94)}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--ink-soft);text-decoration:none;font-weight:500;font-size:15px}
+nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:48px 72px}
+.topo{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
+.topo path{fill:none;stroke:var(--turquoise);stroke-opacity:.18;stroke-width:1.4}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(38px,6vw,64px);margin-top:14px}
+.hero h1 em{font-style:normal;color:var(--chile)}
+.hero p.lede{font-size:19px;color:var(--ink-soft);max-width:34em;margin:18px 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.cover{display:block;height:auto;object-fit:cover;aspect-ratio:5/8;max-width:320px;width:100%;justify-self:center;border-radius:6px;box-shadow:0 18px 40px rgba(59,42,30,.28);background:linear-gradient(160deg,#2B3E5C 0%,#3E5875 38%,#C7744A 78%,#E8B472 100%);color:#FFF8EE;display:flex;flex-direction:column;justify-content:space-between;padding:26px 22px;position:relative;overflow:hidden}
+img.cover{padding:0;background:none}
+.cover .c-top{font:italic 400 14px/1.3 var(--display);opacity:.9}
+.cover .c-title{font:600 30px/1.05 var(--display)}
+.cover .c-sub{font:500 13px/1.3 var(--body);letter-spacing:.06em;text-transform:uppercase;margin-top:10px;opacity:.9}
+.cover .c-author{font:600 16px/1 var(--display);letter-spacing:.08em;text-transform:uppercase}
+
+/* sections */
+section{padding-block:64px}
+.band{background:var(--paper);border-block:1px solid var(--line)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.two>*{min-width:0}
+h2{font-size:clamp(28px,4vw,40px);margin-top:10px}
+.prose p{max-width:36em}
+.hook{font:500 20px/1.45 var(--display);color:var(--chile);margin:14px 0 6px}
+.note{font-weight:700;color:var(--ink-soft)}
+.sig{font:italic 500 17px/1.45 var(--display);opacity:1 !important}
+.choice{font-size:15px;color:var(--ink-soft);margin:14px 0 0}
+.fine{font-size:14px;margin-top:16px !important;opacity:.75 !important}
+.fine a{color:var(--gold)}
+.facts{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.facts li{display:flex;gap:12px;align-items:baseline}
+.facts li::before{content:"";flex:0 0 8px;height:8px;border-radius:50%;background:var(--chile);transform:translateY(-2px)}
+
+.mock{width:200px;height:auto;display:block;border-radius:6px}
+.free{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;background:#2A2625;color:#FBF8F1;border-radius:14px;padding:40px}
+.free .eyebrow{color:var(--gold)}
+.free h2{color:#FBF8F1}
+.free p{color:#FBF8F1;opacity:.85;max-width:34em}
+.free .btn.primary{margin-top:10px}
+.loop{width:88px;height:88px}
+.loop path{fill:none;stroke:#E0715F;stroke-width:5;stroke-linecap:round}
+.loop text{fill:var(--cream);font:600 30px var(--display)}
+
+.merch{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
+.item{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.item .swatch{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;font:600 18px/1.15 var(--display);text-align:center;padding:12px}
+.item h3{font-size:18px}
+.item p{margin:0;font-size:15px;color:var(--ink-soft)}
+.soon{font:700 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--chile)}
+
+footer{padding-block:40px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:820px){
+  .hero .wrap,.two,.free{grid-template-columns:1fr}
+  .merch{grid-template-columns:repeat(2,1fr)}
+  .cover{max-width:240px}
+  .mock{width:150px;justify-self:center}
+  .free{padding:28px}
+}
+@media (max-width:420px){.merch{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="wordmark" href="#top"><img src="logo.png" width="900" height="462" alt="Estella Reede, Cozy Mysteries"></a>
+    <nav aria-label="Main">
+      <a href="#books">Books</a>
+      <a href="#free">Free Prequel</a>
+      <!-- <a href="#merch">Merch</a> -->
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <svg class="topo" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M-20 420 C180 360 300 470 480 410 S820 300 1000 360 S1180 330 1240 300"/>
+      <path d="M-20 470 C200 410 320 520 500 460 S840 350 1010 410 S1190 380 1240 350"/>
+      <path d="M-20 520 C210 460 340 570 520 510 S860 400 1020 460 S1200 430 1240 400"/>
+      <path d="M-20 370 C160 310 280 420 460 360 S800 250 990 310 S1170 280 1240 250"/>
+      <path d="M-20 320 C150 260 260 370 440 310 S780 200 980 260 S1160 230 1240 200"/>
+      <path d="M760 120 C820 80 900 90 930 140 S900 230 830 220 S720 170 760 120Z"/>
+      <path d="M780 135 C825 105 885 112 905 148 S885 205 835 198 S755 165 780 135Z"/>
+      <path d="M800 148 C830 128 865 132 878 155 S865 188 838 184 S785 165 800 148Z"/>
+    </svg>
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">The Quinny Sinclair Mysteries</div>
+        <h1>Small-town New Mexico. Big secrets. <em>One very opinionated black cat.</em></h1>
+        <p class="lede">Cartographer Quinny Sinclair can read any trail, survey any ridge, and never once leave a puzzle alone. Cozy mysteries full of red chile, piñón smoke, family, and a map that always holds more than it shows.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://dl.bookfunnel.com/cmf38oatsq" target="_blank" rel="noopener">Join the email list, get the prequel free</a>
+          <a class="btn" href="https://www.amazon.com/dp/B0HN66QSLB" target="_blank" rel="noopener">Buy on Amazon</a>
+        </div>
+        <p class="choice">Two ways to read: join Estella's email list and get the ebook free, or buy your copy on Amazon.</p>
+      </div>
+      <img class="cover" src="cover.jpg" width="800" height="1280" alt="Cover of A Matter of A Piñón: The Baker's Missing Ledger by Estella Reede, showing a black cat beside sopaipillas, honey, and a hand-drawn map outside Panadería Delgado">
+    </div>
+    </div>
+  </section>
+
+  <section id="books" class="band">
+    <div class="wrap two">
+      <div class="prose">
+        <div class="eyebrow">The Prequel Novella</div>
+        <h2>A Matter of A Piñón: The Baker's Missing Ledger</h2>
+        <p class="hook">One missing bakery ledger, an inheritance compromised, and a mapmaker who can't resist connecting the dots.</p>
+        <p>Road-tripping cartographer Quinny Sinclair plans one night in Río Seco, a New Mexican town scented with sage and painted in fuchsia sunsets. Then her car breaks down, a black cat named Mr. Beans adopts her, and a grieving family's missing heirloom draws her in. She never turns back mid-trail.</p>
+        <p>Part recipe book, part shop ledger, part private diary, deceased baker Paz Delgado's handwritten book holds thirty years of recipes, business records, family history, and secrets about money that was never hers. Now she's gone, and so is the book. That's no accident.</p>
+        <p>Paz's niece swears it never existed. Her nephew insists it exists, and that it's his to inherit. Half the town wants it found. The rest couldn't care less, until Quinny starts asking questions.</p>
+        <p>She has two days until her car is fixed and the road pulls her home. Without the book, the bakery closes for good and an embezzler walks free.</p>
+        <p class="note">A complete cozy mystery novella.</p>
+        <div class="cta" style="margin-top:22px">
+          <a class="btn primary" href="https://www.amazon.com/dp/B0HN66QSLB" target="_blank" rel="noopener">Buy on Amazon</a>
+        </div>
+        <p class="choice">Or get it free when you <a href="https://dl.bookfunnel.com/cmf38oatsq" target="_blank" rel="noopener">join the email list</a>.</p>
+      </div>
+      <div class="prose">
+        <div class="eyebrow">Coming Next · Book 1</div>
+        <h2>Murder with Extra Salsa</h2>
+        <p>Back home in Corrales, Quinny is helping run her grandparents' bookstore when a rancher brings in an old hand-drawn map. One hike later, a year-old disappearance becomes something much darker, and the whole valley seems to know more than it's saying.</p>
+        <ul class="facts">
+          <li>Set in Corrales, New Mexico</li>
+          <li>A family bookstore, a taco truck, and a growers' market</li>
+          <li>Mr. Beans returns</li>
+        </ul>
+        <p style="margin-top:18px">Get the free prequel to hear first when it launches.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="free">
+    <div class="wrap">
+      <div class="free">
+        <img class="mock" src="cover-3d.jpg" width="900" height="1436" alt="A Matter of A Piñón book" loading="lazy">
+        <div>
+          <div class="eyebrow">Free When You Join the Email List</div>
+          <h2>Welcome to Quinny's world</h2>
+          <p>This story is where Quinny Sinclair's journey begins, in the midst of her life taking a detour, and before she realizes just how much trouble a keen eye for detail can stir up. It's the perfect, entangled intro to test Quinny's wits before things turn lethal in <i>Murder with Extra Salsa</i>.</p>
+          <p>Pour yourself a mug of piñón coffee, let the high-desert breeze pull you straight into the whirlwind, and see if you can trace the paper trail before Quinny does.</p>
+          <p class="sig">Happy sleuthing,<br>Estella Reede</p>
+          <a class="btn primary" href="https://dl.bookfunnel.com/cmf38oatsq" target="_blank" rel="noopener">Join the list &amp; get your free copy</a>
+          <p class="fine">Joining Estella's email list is how you get the free ebook. You'll hear about new releases and behind-the-scenes New Mexico. Unsubscribe anytime. Rather not join? <a href="https://www.amazon.com/dp/B0HN66QSLB" target="_blank" rel="noopener">Buy it on Amazon</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="merch" class="band" hidden>
+    <div class="wrap">
+      <div class="eyebrow">From Río Seco, with Love</div>
+      <h2>Merch for Quinny fans</h2>
+      <p style="max-width:36em">Original designs from the books, printed on demand through Amazon.</p>
+      <div class="merch">
+        <a class="item" href="MERCH_TEE_LINK" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="swatch" style="background:#E8DCC4;color:#3B2A1E">Río Seco.<br>2 miles.</div>
+          <h3>Río Seco Sign Tee</h3><p>The hand-painted sign at the edge of town.</p><span class="soon">Coming soon</span>
+        </a>
+        <a class="item" href="MERCH_HOODIE_LINK" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="swatch" style="background:#2A2522;color:#F1E6D3">Mr. Beans</div>
+          <h3>Mr. Beans Hoodie</h3><p>One very opinionated black cat and his yarn ball.</p><span class="soon">Coming soon</span>
+        </a>
+        <a class="item" href="MERCH_TOTE_LINK" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="swatch" style="background:#F3EBDD;color:#9E2A1C;font-style:italic">Maps don't argue with you.</div>
+          <h3>Field Map Tote</h3><p>For your next trip to the bookstore.</p><span class="soon">Coming soon</span>
+        </a>
+        <a class="item" href="MERCH_PILLOW_LINK" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="swatch" style="background:#9E2A1C;color:#FFF3E2">Río Seco<br>Town Map</div>
+          <h3>Town Map Pillow</h3><p>Every street Quinny walked, hand-drawn.</p><span class="soon">Coming soon</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="band">
+    <div class="wrap two">
+      <div class="prose">
+        <div class="eyebrow">About the Author</div>
+        <h2>Estella Reede</h2>
+      </div>
+      <div class="prose">
+        <p>Estella Reede writes cozy mysteries rooted in the landscapes, kitchens, and small towns of New Mexico. The Quinny Sinclair Mysteries follow a cartographer who can't leave a map, or a mystery, alone.</p>
+        <p>She believes every good story starts with a trail someone left behind, and that no case should be solved on an empty stomach.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Estella Reede</span>
+    <span><a href="https://dl.bookfunnel.com/cmf38oatsq" target="_blank" rel="noopener">Join the email list</a> · <a href="https://www.amazon.com/dp/B0HN66QSLB" target="_blank" rel="noopener">Amazon</a></span>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
