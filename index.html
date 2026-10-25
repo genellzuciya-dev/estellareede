@@ -100,6 +100,17 @@ h2{font-size:clamp(28px,4vw,40px);margin-top:10px}
 .item p{margin:0;font-size:15px;color:var(--ink-soft)}
 .soon{font:700 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--chile)}
 
+img.cover.book1{max-width:230px;justify-self:start;margin-bottom:26px}
+.review{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;border:2px solid var(--turquoise);border-radius:14px;padding:36px 40px}
+.review p{max-width:36em;color:var(--ink-soft)}
+.stars{font-size:34px;letter-spacing:4px;color:var(--chile);line-height:1}
+.promos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:28px}
+.promo{background:var(--cream);border:1px solid var(--line);border-top:4px solid var(--turquoise);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit}
+.promo:hover{border-top-color:var(--chile)}
+.promo h3{font-size:19px}
+.promo p{margin:0;font-size:15px;color:var(--ink-soft);flex:1}
+.promo .go{font-weight:700;color:var(--turquoise)}
+[hidden]{display:none !important}
 footer{padding-block:40px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
@@ -109,6 +120,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .cover{max-width:240px}
   .mock{width:150px;justify-self:center}
   .free{padding:28px}
+  .review{grid-template-columns:1fr;padding:26px;gap:16px}
 }
 @media (max-width:420px){.merch{grid-template-columns:1fr}}
 </style>
@@ -121,6 +133,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <nav aria-label="Main">
       <a href="#books">Books</a>
       <a href="#free">Free Prequel</a>
+      <a href="#review">Reviews</a>
+      <a href="#free-reads" id="nav-free-reads" hidden>Free Reads</a>
       <!-- <a href="#merch">Merch</a> -->
       <a href="#about">About</a>
     </nav>
@@ -141,7 +155,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </svg>
     <div class="wrap">
       <div>
-        <div class="eyebrow">The Quinny Sinclair Mysteries</div>
+        <div class="eyebrow">The Quinny Sinclair Mapmaker Mysteries</div>
         <h1>Small-town New Mexico. Big secrets. <em>One very opinionated black cat.</em></h1>
         <p class="lede">Cartographer Quinny Sinclair can read any trail, survey any ridge, and never once leave a puzzle alone. Cozy mysteries full of red chile, piñón smoke, family, and a map that always holds more than it shows.</p>
         <div class="cta">
@@ -172,6 +186,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <p class="choice">Or get it free when you <a href="https://dl.bookfunnel.com/cmf38oatsq" target="_blank" rel="noopener">join the email list</a>.</p>
       </div>
       <div class="prose">
+        <img class="cover book1" src="book1-cover.jpg" width="800" height="1280" alt="Cover of Murder with Extra Salsa, A Quinny Sinclair Mapmaker Mystery by Estella Reede, showing a black cat beside a spilled bowl of salsa on a hand-drawn map in a cozy bookstore" loading="lazy">
         <div class="eyebrow">Coming Next · Book 1</div>
         <h2>Murder with Extra Salsa</h2>
         <p>Back home in Corrales, Quinny is helping run her grandparents' bookstore when a rancher brings in an old hand-drawn map. One hike later, a year-old disappearance becomes something much darker, and the whole valley seems to know more than it's saying.</p>
@@ -199,6 +214,32 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <p class="fine">Joining Estella's email list is how you get the free ebook. You'll hear about new releases and behind-the-scenes New Mexico. Unsubscribe anytime. Rather not join? <a href="https://www.amazon.com/dp/B0HN66QSLB" target="_blank" rel="noopener">Buy it on Amazon</a>.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="review">
+    <div class="wrap">
+      <div class="review">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <div>
+          <div class="eyebrow">Already Read the Prequel?</div>
+          <h2>Tell other readers what you thought</h2>
+          <p>If you enjoyed <i>A Matter of A Piñón</i>, a quick rating or a sentence or two means the world. Reviews are how new readers find Quinny, Mr. Beans, and Río Seco. It counts even if you got your copy free.</p>
+          <div class="cta">
+            <a class="btn primary" href="https://www.amazon.com/review/create-review?asin=B0HN66QSLB" target="_blank" rel="noopener">Rate it on Amazon</a>
+            <a class="btn" id="goodreads-btn" href="GOODREADS_LINK" target="_blank" rel="noopener" hidden>Rate it on Goodreads</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="free-reads" class="band" hidden>
+    <div class="wrap">
+      <div class="eyebrow">Free &amp; Discounted Reads</div>
+      <h2>More cozy mysteries to try</h2>
+      <p style="max-width:36em">I'm teaming up with fellow authors to share free and bargain books. Each collection is open for a limited time, so grab what catches your eye.</p>
+      <div class="promos" id="promo-list"></div>
     </div>
   </section>
 
@@ -248,6 +289,40 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <span><a href="https://dl.bookfunnel.com/cmf38oatsq" target="_blank" rel="noopener">Join the email list</a> · <a href="https://www.amazon.com/dp/B0HN66QSLB" target="_blank" rel="noopener">Amazon</a></span>
   </div>
 </footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+/* ===== BOOKFUNNEL PROMOS: edit this list =====
+   Use each promo's TRACKING link (from BookFunnel > Promotions > Your Promos > click the promo name).
+   Promos disappear from the site automatically after their end date. Format dates as YYYY-MM-DD.
+   Example:
+   { name: "Cozy Fall Mysteries", blurb: "Free cozy mysteries with small towns and big secrets.", ends: "2026-11-30", link: "https://books.bookfunnel.com/..." },
+*/
+const promos = [
+
+];
+
+/* Goodreads: paste your book's Goodreads link between the quotes to show the button. */
+const goodreads = "";
+
+(function(){
+  const today = new Date().toISOString().slice(0,10);
+  const live = promos.filter(p => p.link && (!p.ends || p.ends >= today));
+  if (live.length){
+    const list = document.getElementById('promo-list');
+    live.forEach(p => {
+      const a = document.createElement('a');
+      a.className = 'promo'; a.href = p.link; a.target = '_blank'; a.rel = 'noopener';
+      const end = p.ends ? new Date(p.ends + 'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric'}) : '';
+      a.innerHTML = '<h3></h3><p></p>' + (end ? '<span class="soon">Ends ' + end + '</span>' : '') + '<span class="go">Browse the books →</span>';
+      a.querySelector('h3').textContent = p.name;
+      a.querySelector('p').textContent = p.blurb || '';
+      list.appendChild(a);
+    });
+    document.getElementById('free-reads').hidden = false;
+    document.getElementById('nav-free-reads').hidden = false;
+  }
+  if (goodreads){ const g = document.getElementById('goodreads-btn'); g.href = goodreads; g.hidden = false; }
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
