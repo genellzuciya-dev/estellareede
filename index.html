@@ -392,18 +392,28 @@ void main(){
  float c=fbm(p+3.2*w);
  float band=smoothstep(95.,190.,y)*(1.-smoothstep(275.,385.,y));
  vec3 col=grad(y);
- /* warm swirls of orange and gold */
- col=mix(col,mix(C(194.,84.,28.),C(240.,163.,94.),w.x),band*.55*smoothstep(.3,.75,q.y));
- /* sunlit cloud tops */
- col=mix(col,C(247.,218.,178.),band*smoothstep(.5,.78,c)*.6);
- /* plum storm shadows, lower in the sky */
- col=mix(col,C(110.,62.,92.),band*smoothstep(.52,.25,c)*.6*smoothstep(170.,320.,y));
- /* turquoise glints where the clouds fold */
- col+=C(79.,194.,190.)*band*pow(max(0.,w.y-.55),2.)*3.2;
- /* blowing desert dust: long streaks on the wind */
+ /* soft dusty-rose haze instead of flame */
+ col=mix(col,C(201.,140.,122.),band*.22*smoothstep(.35,.75,q.y));
+ /* cool lavender mist drifting through */
+ col=mix(col,C(176.,158.,196.),band*smoothstep(.45,.72,q.x)*.32);
+ /* pale cloud billows */
+ col=mix(col,C(244.,226.,204.),band*smoothstep(.55,.8,c)*.42);
+ /* plum shadows, lower in the sky */
+ col=mix(col,C(96.,62.,100.),band*smoothstep(.5,.25,c)*.5*smoothstep(170.,320.,y));
+ /* wisps: thin, curling filaments of cloud and dust */
+ float sb=smoothstep(105.,170.,y)*(1.-smoothstep(285.,370.,y));
+ float r1=1.-abs(2.*fbm(vec2(px.x/680.-t*.06,px.y/58.)+w*1.3)-1.);
+ col=mix(col,C(246.,222.,196.),pow(r1,18.)*.38*sb);
+ /* turquoise streaks: the magic in the weather */
+ float r2=1.-abs(2.*fbm(vec2(px.x/820.+t*.045,px.y/44.)+vec2(4.1,1.7)+q*1.4)-1.);
+ float gate=smoothstep(.42,.68,fbm(px/380.+vec2(t*.04,0.)));
+ col=mix(col,C(79.,194.,190.),pow(r2,30.)*.6*sb*gate);
+ float r3=1.-abs(2.*fbm(vec2(px.x/560.-t*.08,px.y/70.)+vec2(9.3,3.2)+w)-1.);
+ col=mix(col,C(23.,131.,127.),pow(r3,34.)*.35*sb*(1.-gate*.5));
+ /* blowing desert dust, faint */
  float d=fbm(vec2(px.x/520.-t*.11,px.y/36.)+w*.6);
  float dm=smoothstep(140.,220.,y)*(1.-smoothstep(290.,380.,y));
- col=mix(col,C(236.,200.,154.),smoothstep(.55,.82,d)*.38*dm);
+ col=mix(col,C(236.,214.,180.),smoothstep(.6,.85,d)*.25*dm);
  /* magic: drifting, twinkling motes */
  vec2 sp=px+vec2(-t*16.,t*9.);
  vec2 cell=floor(sp/44.);vec2 f=fract(sp/44.);
@@ -412,7 +422,7 @@ void main(){
  float dist=length((f-pos)*44.);
  float tw=pow(.5+.5*sin(t*2.2+r*40.),3.);
  float sm=step(.8,r)*smoothstep(2.4,0.,dist)*tw*smoothstep(70.,160.,y)*(1.-smoothstep(380.,460.,y));
- col+=C(255.,226.,170.)*sm*1.1;
+ col+=mix(C(255.,226.,170.),C(170.,240.,235.),step(.9,r))*sm*1.1;
  gl_FragColor=vec4(col,1.);
 }`;
   function sh(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null;}
