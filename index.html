@@ -75,7 +75,7 @@ body{position:relative}
 .topo{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
 .topo path{fill:none;stroke:var(--turquoise);stroke-opacity:.22;stroke-width:2.6}
 .hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(38px,6vw,64px);margin-top:14px;text-shadow:0 2px 22px rgba(70,28,8,.55),0 1px 2px rgba(70,28,8,.35)}
+.hero h1{font-size:clamp(38px,6vw,64px);margin-top:14px;text-shadow:0 2px 22px rgba(70,28,30,.6),0 1px 3px rgba(70,28,30,.45)}
 .hero h1 em{font-style:normal;color:var(--chile)}
 .hero p.lede{font-size:19px;color:var(--ink-soft);max-width:34em;margin:18px 0 28px}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
@@ -373,55 +373,63 @@ float fbm(vec2 p){float v=0.,a=.5;mat2 m=mat2(1.6,1.2,-1.2,1.6);
 vec3 C(float r,float g,float b){return vec3(r,g,b)/255.;}
 vec3 grad(float y){
  vec3 c=C(243.,236.,224.);
- c=mix(c,C(234.,219.,197.),smoothstep(0.,120.,y));
- c=mix(c,C(235.,176.,131.),smoothstep(120.,175.,y));
- c=mix(c,C(215.,113.,47.),smoothstep(175.,230.,y));
- c=mix(c,C(194.,84.,28.),smoothstep(230.,270.,y));
- c=mix(c,C(122.,50.,22.),smoothstep(270.,330.,y));
- c=mix(c,C(42.,32.,28.),smoothstep(330.,405.,y));
- c=mix(c,C(28.,26.,25.),smoothstep(405.,480.,y));
+ c=mix(c,C(238.,222.,204.),smoothstep(0.,110.,y));
+ c=mix(c,C(245.,196.,160.),smoothstep(110.,170.,y));
+ c=mix(c,C(238.,160.,120.),smoothstep(170.,220.,y));
+ c=mix(c,C(220.,118.,78.),smoothstep(220.,275.,y));
+ c=mix(c,C(120.,62.,74.),smoothstep(275.,340.,y));
+ c=mix(c,C(48.,32.,40.),smoothstep(340.,410.,y));
+ c=mix(c,C(28.,26.,25.),smoothstep(410.,490.,y));
  return c;}
+/* one flowing ribbon: a soft glowing curve with a grain of sparkling dust */
+float rib(vec2 px,float u,float base,float A,float f,float ph,float B,float f2,float ph2,float wd,float t,out float core){
+ float yc=base+A*sin(6.2832*(u*f+t*.035)+ph)+B*sin(6.2832*(u*f2-t*.05)+ph2);
+ yc+=(fbm(vec2(px.x/140.,t*.25+ph))-.5)*26.;
+ float dy=abs(px.y-yc);
+ float wisp=smoothstep(.28,.62,fbm(vec2(px.x/260.-t*.12,ph*3.)));
+ core=exp(-pow(dy/wd,2.))*wisp;
+ return exp(-pow(dy/(wd*3.2),2.))*wisp;
+}
 void main(){
  vec2 px=vec2(gl_FragCoord.x,R.y-gl_FragCoord.y)*S;
  float y=px.y-O;
+ vec2 pp=vec2(px.x,y);
  float t=T;
- vec2 p=px/240.;
- /* billowing monsoon clouds: layered, self-folding noise */
+ float u=px.x/(R.x*S);
+ vec2 p=pp/240.;
  vec2 q=vec2(fbm(p+vec2(0.,t*.10)),fbm(p+vec2(5.2,1.3)-vec2(t*.13,0.)));
  vec2 w=vec2(fbm(p+3.*q+vec2(1.7,9.2)+vec2(t*.16,0.)),fbm(p+3.*q+vec2(8.3,2.8)-vec2(0.,t*.09)));
  float c=fbm(p+3.2*w);
- float band=smoothstep(95.,190.,y)*(1.-smoothstep(275.,385.,y));
+ float band=smoothstep(95.,190.,y)*(1.-smoothstep(260.,370.,y));
  vec3 col=grad(y);
- /* soft dusty-rose haze instead of flame */
- col=mix(col,C(201.,140.,122.),band*.22*smoothstep(.35,.75,q.y));
- /* cool lavender mist drifting through */
- col=mix(col,C(176.,158.,196.),band*smoothstep(.45,.72,q.x)*.32);
- /* pale cloud billows */
- col=mix(col,C(244.,226.,204.),band*smoothstep(.55,.8,c)*.42);
- /* plum shadows, lower in the sky */
- col=mix(col,C(96.,62.,100.),band*smoothstep(.5,.25,c)*.5*smoothstep(170.,320.,y));
- /* wisps: thin, curling filaments of cloud and dust */
- float sb=smoothstep(105.,170.,y)*(1.-smoothstep(285.,370.,y));
- float r1=1.-abs(2.*fbm(vec2(px.x/680.-t*.06,px.y/58.)+w*1.3)-1.);
- col=mix(col,C(246.,222.,196.),pow(r1,18.)*.38*sb);
- /* turquoise streaks: the magic in the weather */
- float r2=1.-abs(2.*fbm(vec2(px.x/820.+t*.045,px.y/44.)+vec2(4.1,1.7)+q*1.4)-1.);
- float gate=smoothstep(.42,.68,fbm(px/380.+vec2(t*.04,0.)));
- col=mix(col,C(79.,194.,190.),pow(r2,30.)*.6*sb*gate);
- float r3=1.-abs(2.*fbm(vec2(px.x/560.-t*.08,px.y/70.)+vec2(9.3,3.2)+w)-1.);
- col=mix(col,C(23.,131.,127.),pow(r3,34.)*.35*sb*(1.-gate*.5));
- /* blowing desert dust, faint */
- float d=fbm(vec2(px.x/520.-t*.11,px.y/36.)+w*.6);
- float dm=smoothstep(140.,220.,y)*(1.-smoothstep(290.,380.,y));
- col=mix(col,C(236.,214.,180.),smoothstep(.6,.85,d)*.25*dm);
- /* magic: drifting, twinkling motes */
- vec2 sp=px+vec2(-t*16.,t*9.);
+ /* pale, airy cloud billows */
+ col=mix(col,C(252.,232.,214.),band*smoothstep(.52,.8,c)*.45);
+ /* a breath of lavender */
+ col=mix(col,C(196.,178.,214.),band*smoothstep(.5,.75,q.x)*.22);
+ /* sweeping ribbons of wind, dust and magic */
+ float k1,k2,k3,k4;
+ float g1=rib(pp,u,250.,120.,.85,0.,40.,2.1,1.3,9.,t,k1);
+ float g2=rib(pp,u,320.,160.,.65,2.2,35.,1.7,4.,12.,t,k2);
+ float g3=rib(pp,u,200.,80.,1.25,4.1,25.,2.6,.7,6.,t,k3);
+ float g4=rib(pp,u,410.,130.,.75,1.1,30.,1.9,2.6,10.,t,k4);
+ float fade=1.-smoothstep(520.,640.,y);
+ float grain=step(.86,h(floor(px/2.)+floor(t*5.)));
+ vec3 tq=C(64.,201.,196.), tqL=C(150.,236.,230.), pe=C(255.,214.,184.);
+ col=mix(col,tq,clamp(g1*.45+k1*.75,0.,1.)*fade);
+ col=mix(col,tqL,k1*grain*.8*fade);
+ col=mix(col,pe,clamp(g2*.3+k2*.55,0.,1.)*fade);
+ col=mix(col,C(255.,240.,225.),k2*grain*.7*fade);
+ col=mix(col,tq,clamp(g3*.35+k3*.8,0.,1.)*fade);
+ col=mix(col,tqL,clamp(g4*.25+k4*.45,0.,1.)*fade);
+ col=mix(col,C(200.,250.,245.),k4*grain*.7*fade);
+ /* drifting, twinkling motes */
+ vec2 sp=pp+vec2(-t*16.,t*9.);
  vec2 cell=floor(sp/44.);vec2 f=fract(sp/44.);
  float r=h(cell);
  vec2 pos=vec2(h(cell+3.1),h(cell+7.7))*.8+.1;
  float dist=length((f-pos)*44.);
  float tw=pow(.5+.5*sin(t*2.2+r*40.),3.);
- float sm=step(.8,r)*smoothstep(2.4,0.,dist)*tw*smoothstep(70.,160.,y)*(1.-smoothstep(380.,460.,y));
+ float sm=step(.8,r)*smoothstep(2.4,0.,dist)*tw*smoothstep(70.,160.,y)*(1.-smoothstep(480.,600.,y));
  col+=mix(C(255.,226.,170.),C(170.,240.,235.),step(.9,r))*sm*1.1;
  gl_FragColor=vec4(col,1.);
 }`;
